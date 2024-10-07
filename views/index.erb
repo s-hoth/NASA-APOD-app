@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @title %></title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1><%= @title %></h1>
+
+    <% if @error %>
+      <p style="color: red;"><%= @error %></p>
+    <% end %>
+
+    <% if @apod_data %>
+      <h2><%= @apod_data['title'] %></h2>
+
+      <% if @apod_data['media_type'] == 'video' %>
+        <iframe src="<%= @apod_data['url'] %>" frameborder="0" allowfullscreen></iframe>
+      <% else %>
+        <img src="<%= @apod_data['url'] %>" alt="<%= @apod_data['title'] %>">
+      <% end %>
+
+      <p><%= @apod_data['explanation'] %></p>
+    <% end %>
+
+    <form action="/fetch" method="get">
+      <input type="date" name="date" required>
+      <button type="submit">Fetch APOD for Date</button>
+    </form>
+
+    <form action="/random" method="get">
+      <button type="submit">Fetch Random APOD</button>
+    </form>
+  </div>
+
+  <footer class="footer">
+      <p>All images and descriptions provided through NASA Open APIs</p>
+  </footer>
+
+</body>
+</html>
