@@ -4,6 +4,8 @@ require 'json'
 require 'date'
 
 set :layout, :layout
+set :bind, '0.0.0.0'
+set :port, 4567
 
 # Get the API key from an environment variable
 API_KEY = ENV['NASA_API_KEY']
